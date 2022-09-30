@@ -1,0 +1,19 @@
+---
+title: "Eleventy Portfolio"
+layout: "base.njk"
+---
+
+<section class="gallery">
+    <h1>AI (de)generated glory</h1>
+    <ul>
+        <!-- https://mozilla.github.io/nunjucks/templating.html#asynceach -->
+        {% asyncEach image in gallery %}
+        <li>
+            <!-- <img src="/gallery/images/{{ image.src }}" alt="{{ image.description }}"> -->
+            {% set url = "/assets/gallery/" + image.src %}
+            {% EleventyImage url, image.description, "(min-width: 30em) 50vw, 100vw" %}
+            <p>{{ artists[image.artist_id].name }}</p>
+        </li>
+        {% endeach %}
+    </ul>
+</section>

@@ -4,8 +4,7 @@ async function imageShortcode(src, alt, sizes) {
   let metadata = await Image(`./src${src}`, {
     widths: [300, 800, null],
     formats: ["avif", "jpeg"],
-    urlPath: "/images/",
-    outputDir: "./public/images/"
+    outputDir: "./public/img/"
   });
 
   let imageAttributes = {
@@ -22,6 +21,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("./src/css/");
   eleventyConfig.addWatchTarget("./src/css/");
   eleventyConfig.addPassthroughCopy("./src/images/");
+//   eleventyConfig.addPassthroughCopy({"./src/assets/gallery": "/gallery/images/"});
   eleventyConfig.addPassthroughCopy({ "./src/favicons": "/" });
   eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
   eleventyConfig.addNunjucksAsyncShortcode("EleventyImage", imageShortcode);
